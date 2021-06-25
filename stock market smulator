@@ -1,0 +1,33 @@
+
+
+
+from google.colab import drive
+drive.mount('/content/drive')
+
+
+
+# Commented out IPython magic to ensure Python compatibility.
+import pandas as pd
+import matplotlib.pyplot as plt
+# %matplotlib inline
+
+ms = pd.read_csv('/content/sample_data/TSLA.csv')
+ms["ma10"] = ms['Close'].rolling(10).mean()
+ms['ma50'] = ms['Close'].rolling(50).mean()
+print(ms)
+ms['Close'].plot()
+ms['ma10'].plot(label = 'ma10')
+ms['ma50'].plot(label = 'ma50')
+
+ms['shares'] = [1 if ms.loc[x,'ma10'] > ms.loc[x,'ma50'] else 0 for x in ms.index]
+
+ms["Close1"] = ms['Close'].shift(-1)
+ms['profit'] = [ms.loc[ie, 'Close']- ms.loc[ie, "Close1"] if ms.loc[ie, 'shares'] == 1 else 0 for ie in ms.index]
+ms['profit'].plot(label = "profit")
+
+ms['wealth'] = ms['profit'].cumsum()
+ms.tail()
+
+ms['wealth'].plot()
+
+print('the total money you win is', ms.loc[ms.index[-2], "wealth"])
