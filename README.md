@@ -1,4 +1,4 @@
-Project namme = Interactive english dictionary 
+Project name = Interactive english dictionary 
 
 
 I have included the code file along with the data dictionary file . 
