@@ -1,3 +1,0 @@
-Stock market simulator check the strategy of Moving average, code can be simulated to to know whether a stock is profitable on this starategy or not. 
-program buys one stock when moving average 10 beats moving average 50 and sells vice versa.
-Use only CSV file for stock data (available at yahoo finance for free)
